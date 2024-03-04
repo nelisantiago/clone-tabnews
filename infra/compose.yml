@@ -1,0 +1,12 @@
+services: 
+  database:
+    image: postgres:16-alpine3.18
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=root
+      - POSTGRES_DB=c.tabnews-db
+    ports: 
+      - "52770:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data 
+  
