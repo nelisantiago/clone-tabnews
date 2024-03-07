@@ -1,12 +1,18 @@
+version: '3.8'
 services: 
   database:
     image: postgres:16-alpine3.18
-    environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_USER=root
-      - POSTGRES_DB=c.tabnews-db
+    env_file:
+      - ../.env
     ports: 
       - "52770:5432"
     volumes:
       - ./data:/var/lib/postgresql/data 
-  
+    container_name: tabnews-database
+    networks:
+      - tabnews-network
+networks:
+  tabnews-network:
+    driver: bridge
+volumes:
+  data:
