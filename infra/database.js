@@ -10,14 +10,18 @@ const config = {
 
 async function query(query) {
   const client = new Client(config)
-  
   await client.connect()
-  const response = await client.query(query)
-  await client.end()
 
-  return response
+  try {
+    const response = await client.query(query)
+    return response
+  }  catch (error) {
+    console.error('Error running query', error)
+  } finally {
+    await client.end()
+  }
 }
 
 export default {
-  query: query
+  query: query,
 }
