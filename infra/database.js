@@ -6,7 +6,10 @@ const config = {
   password: process.env.POSTGRES_PASSWORD,
   port: process.env.POSTGRES_PORT,
   host: process.env.POSTGRES_HOST,
+  ssl: true
 }
+
+if(process.env.NODE_ENV === 'development') delete config.ssl
 
 async function query(query) {
   const client = new Client(config)
