@@ -9,7 +9,7 @@ const config = {
   ssl: true
 }
 
-if(process.env.NODE_ENV === 'development') delete config.ssl
+if(process.env.NODE_ENV === 'development') config.ssl = false
 
 async function query(query) {
   const client = new Client(config)
